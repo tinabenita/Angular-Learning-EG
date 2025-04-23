@@ -25,6 +25,10 @@ export class QuizFormComponent {
     this.quizForm.controls.questions.push(this.generateQuestion());
   }
 
+  removeQuestion(questionIndex: number): void {
+    this.quizForm.controls.questions.removeAt(questionIndex);
+  }
+
   onSubmit() {
   }
 
