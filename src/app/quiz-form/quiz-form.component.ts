@@ -1,12 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormArray, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-form',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './quiz-form.component.html',
   styleUrl: './quiz-form.component.scss'
 })
 export class QuizFormComponent {
+  fb = inject(NonNullableFormBuilder);
+  quizForm: Form = this.fb.group({
+    questions: this.fb.array<FormQuestion>([]),
+  });
 
 }
+
+type FormAnswer = FormGroup<{ text: FormControl<string> }>;
+  
+type FormQuestion = FormGroup<{
+  questionName: FormControl<string>;
+  answers: FormArray<FormAnswer>;
+}>;
+
+type Form = FormGroup<{
+  questions: FormArray<FormQuestion>;
+}>;
