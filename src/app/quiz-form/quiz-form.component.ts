@@ -38,7 +38,18 @@ export class QuizFormComponent {
       ?.controls?.answers?.push(newAnswer);
   }
 
+  removeAnswer(questionIndex: number, answerIndex: number): void {
+    this.quizForm.controls.questions
+      .at(questionIndex)
+      ?.controls?.answers?.removeAt(answerIndex);
+  }
+
   onSubmit() {
+    if (this.quizForm.valid) {
+      console.log(this.quizForm.value);
+    } else {
+      console.log('Form is invalid');
+    }
   }
 
 }
