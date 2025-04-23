@@ -1,1 +1,22 @@
-<p>quiz-form works!</p>
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+    <h1>Quiz form</h1>
+    <div formArrayName="questions">
+      @for (
+        question of quizForm.controls.questions.controls;
+        track questionIndex;
+        let questionIndex = $index
+      ) {
+        <div class="question" [formGroupName]="questionIndex">
+          <input
+            type="text"
+            formControlName="questionName"
+            placeholder="Question name"
+          />
+        </div>
+      }
+    </div>
+    <div class="add-question">
+        <button (click)="addQuestion()" type="button">Add Question</button>
+      </div>
+    <div><button type="submit">Submit</button></div>
+  </form>

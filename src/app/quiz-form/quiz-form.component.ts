@@ -11,13 +11,27 @@ import { FormArray, FormControl, FormGroup, NonNullableFormBuilder, ReactiveForm
 export class QuizFormComponent {
   fb = inject(NonNullableFormBuilder);
   quizForm: Form = this.fb.group({
-    questions: this.fb.array<FormQuestion>([]),
+    questions: this.fb.array<FormQuestion>([this.generateQuestion()]),
   });
+
+  generateQuestion(): FormQuestion{
+    return this.fb.group({
+      questionName: '',
+      answers: this.fb.array<FormAnswer>([]),
+    });
+  }
+
+  addQuestion(): void {
+    this.quizForm.controls.questions.push(this.generateQuestion());
+  }
+
+  onSubmit() {
+  }
 
 }
 
 type FormAnswer = FormGroup<{ text: FormControl<string> }>;
-  
+
 type FormQuestion = FormGroup<{
   questionName: FormControl<string>;
   answers: FormArray<FormAnswer>;
