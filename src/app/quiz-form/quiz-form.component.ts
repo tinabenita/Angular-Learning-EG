@@ -29,6 +29,15 @@ export class QuizFormComponent {
     this.quizForm.controls.questions.removeAt(questionIndex);
   }
 
+  addAnswer(questionIndex: number): void {
+    const newAnswer: FormAnswer = this.fb.group({
+      text: '',
+    });
+    this.quizForm.controls.questions
+      .at(questionIndex)
+      ?.controls?.answers?.push(newAnswer);
+  }
+
   onSubmit() {
   }
 
