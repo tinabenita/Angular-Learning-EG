@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { QuizFormComponent } from "./quiz-form/quiz-form.component";
+import { TableCellChangeComponent } from "./table-cell-change/table-cell-change.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, QuizFormComponent],
+  imports: [RouterOutlet, QuizFormComponent, TableCellChangeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

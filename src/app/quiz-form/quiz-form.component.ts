@@ -54,7 +54,9 @@ export class QuizFormComponent {
 
 }
 
-type FormAnswer = FormGroup<{ text: FormControl<string> }>;
+type FormAnswer = FormGroup<{ 
+  text: FormControl<string> 
+}>;
 
 type FormQuestion = FormGroup<{
   questionName: FormControl<string>;
