@@ -14,7 +14,7 @@ export class QuantityFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      quantity: [60, [Validators.required, Validators.max(100), Validators.min(0)]]
+      quantity: [0, [Validators.required, Validators.max(100), Validators.min(0)]]
     });  
   }
 }
