@@ -1,15 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, HostBinding, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-rating-input',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './rating-input.component.html',
-  styleUrl: './rating-input.component.scss'
+  styleUrl: './rating-input.component.scss',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => RatingInputComponent),
+    multi: true,
+  }],
 })
-export class RatingInputComponent {
+export class RatingInputComponent implements ControlValueAccessor {
   stars: boolean[] = Array(5).fill(false);
+
+  @Input()  disabled = false;
+  @HostBinding('style.opacity')
+  get opacity() {
+    return this.disabled ? 0.25 : 1;
+  }
+
+  onChange = (rating: number) => {};
+
+  onTouched = () => {};
 
   get value(): number {
     return this.stars.reduce((total, starred) => {
@@ -18,6 +34,25 @@ export class RatingInputComponent {
   }
 
   rate(rating: number) {
+    if (!this.disabled) {
+      this.writeValue(rating);
+    }
+  }
+
+  writeValue(rating: number): void {
     this.stars = this.stars.map((_, i) => rating > i);
+    this.onChange(this.value);
+  }
+
+  registerOnChange(fn: (rating: number) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }
