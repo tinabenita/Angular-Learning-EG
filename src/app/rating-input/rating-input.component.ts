@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, forwardRef, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rating-input',

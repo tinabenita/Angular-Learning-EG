@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { QuizFormComponent } from "./quiz-form/quiz-form.component";
 import { TableCellChangeComponent } from "./table-cell-change/table-cell-change.component";
 import { PlayersTableComponent } from "./players-table/players-table.component";
+import { RatingInputComponent } from "./rating-input/rating-input.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, QuizFormComponent, TableCellChangeComponent, PlayersTableComponent],
+  imports: [RouterOutlet, QuizFormComponent, TableCellChangeComponent, PlayersTableComponent, RatingInputComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
