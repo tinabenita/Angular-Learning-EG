@@ -1,1 +1,16 @@
-<p>players-table works!</p>
+<table>
+    <thead>
+        <tr>
+        <th>Player Name</th>
+        <th>Team</th>
+        <th>Age</th>
+        </tr>
+    </thead>
+    <tbody appShowcard>
+        <tr  *ngFor="let player of players">
+        <td>{{ player.name }}</td>
+        <td>{{ player.team }}</td>
+        <td>{{ player.age }}</td>
+        </tr>
+    </tbody>
+</table>
